@@ -1,0 +1,37 @@
+{
+  "name": "@acedatacloud/piece-acemusic",
+  "version": "0.1.0",
+  "description": "ACE Music songs, lyrics, reference tracks and tasks for Activepieces.",
+  "type": "commonjs",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AceDataCloud/ACEMusicActivepieces.git"
+  },
+  "homepage": "https://github.com/AceDataCloud/ACEMusicActivepieces",
+  "bugs": "https://github.com/AceDataCloud/ACEMusicActivepieces/issues",
+  "license": "MIT",
+  "dependencies": {
+    "@activepieces/pieces-common": "0.12.5",
+    "@activepieces/pieces-framework": "0.32.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.11.0",
+    "typescript": "5.9.3"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "acedatacloud",
+    "acemusic",
+    "music"
+  ]
+}
