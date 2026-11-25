@@ -1,6 +1,6 @@
 # ACE Music for Activepieces
 
-Build and pack the piece, then install the resulting npm tarball through the custom pieces workflow in your Activepieces instance.
+Build and pack the piece from this repository. On an Activepieces instance with private pieces enabled, upload the generated tarball in **Platform Admin → Pieces**. See the [Activepieces private piece guide](https://www.activepieces.com/docs/build-pieces/sharing-pieces/private).
 
 ```sh
 npm ci
@@ -8,7 +8,7 @@ npm test
 npm pack
 ```
 
-Get an [application API key](https://platform.acedata.cloud/console/applications) with ACE Music access. Enter the raw key in the host's credential setting or server environment. Keep keys out of prompts, shared workflows and commits.
+Get an [application API key](https://platform.acedata.cloud/console/applications) with ACE Music access. In the flow builder, select an ACE Music action, create a connection and enter the raw key in **Ace Data Cloud application API key**. Keep keys out of prompts, shared workflows and commits.
 
 | Action | Inputs or result |
 | --- | --- |
