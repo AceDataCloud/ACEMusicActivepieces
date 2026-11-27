@@ -6,7 +6,8 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "examples"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -33,5 +34,9 @@
     "acedatacloud",
     "acemusic",
     "music"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

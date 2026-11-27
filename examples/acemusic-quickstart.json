@@ -1,0 +1,106 @@
+{
+  "name": "ACE Music quickstart",
+  "type": "SHARED",
+  "summary": "Look up the original task after creation. Its media may still be processing.",
+  "description": "Create one ACE Music task and look up its original task ID.",
+  "tags": [],
+  "blogUrl": "",
+  "metadata": {
+    "externalId": "XftaPo3ZgE1shQ6x7LR4n"
+  },
+  "author": "Ace Data Cloud",
+  "categories": [],
+  "pieces": [
+    "@activepieces/piece-manual-trigger",
+    "@acedatacloud/piece-acemusic"
+  ],
+  "flows": [
+    {
+      "displayName": "ACE Music quickstart",
+      "trigger": {
+        "name": "trigger",
+        "valid": true,
+        "displayName": "Manual Trigger",
+        "nextAction": {
+          "name": "step_1",
+          "skip": false,
+          "type": "PIECE",
+          "valid": false,
+          "settings": {
+            "input": {
+              "auth": "",
+              "prompt": "A gentle instrumental piano melody for a sunrise."
+            },
+            "pieceName": "@acedatacloud/piece-acemusic",
+            "actionName": "generate",
+            "sampleData": {},
+            "pieceVersion": "0.1.0",
+            "propertySettings": {
+              "prompt": {
+                "type": "MANUAL"
+              }
+            },
+            "errorHandlingOptions": {
+              "retryOnFailure": {
+                "value": false
+              },
+              "continueOnFailure": {
+                "value": false
+              }
+            }
+          },
+          "nextAction": {
+            "name": "step_2",
+            "skip": false,
+            "type": "PIECE",
+            "valid": false,
+            "settings": {
+              "input": {
+                "auth": "",
+                "task_id": "{{step_1['output']['task_id']}}"
+              },
+              "pieceName": "@acedatacloud/piece-acemusic",
+              "actionName": "retrieve",
+              "sampleData": {},
+              "pieceVersion": "0.1.0",
+              "propertySettings": {
+                "task_id": {
+                  "type": "MANUAL"
+                }
+              },
+              "errorHandlingOptions": {
+                "retryOnFailure": {
+                  "value": false
+                },
+                "continueOnFailure": {
+                  "value": false
+                }
+              }
+            },
+            "displayName": "Retrieve the original ACE Music task",
+            "lastUpdatedDate": "2026-10-11T15:59:36.284Z"
+          },
+          "displayName": "Create one ACE Music task",
+          "lastUpdatedDate": "2026-10-11T15:40:03.227Z"
+        },
+        "lastUpdatedDate": "2026-10-11T15:29:17.786Z",
+        "type": "PIECE_TRIGGER",
+        "settings": {
+          "propertySettings": {
+            "markdown": {
+              "type": "MANUAL"
+            }
+          },
+          "pieceName": "@activepieces/piece-manual-trigger",
+          "pieceVersion": "0.0.8",
+          "triggerName": "manual_trigger",
+          "input": {}
+        }
+      },
+      "valid": true,
+      "schemaVersion": "27",
+      "notes": []
+    }
+  ],
+  "status": "PUBLISHED"
+}
