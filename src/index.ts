@@ -4,7 +4,7 @@ import { invoke } from './client';
 
 const auth = PieceAuth.SecretText({
   displayName: 'Ace Data Cloud application API key',
-  description: 'Enter the raw application key with ACE Music access.',
+  description: 'Enter the raw [application key](https://platform.acedata.cloud/console/applications?utm_source=activepieces&utm_medium=referral&utm_campaign=evergreen) with ACE Music access.',
   required: true,
 });
 

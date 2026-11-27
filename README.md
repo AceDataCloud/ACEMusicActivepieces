@@ -8,7 +8,9 @@ npm test
 npm pack
 ```
 
-Get an [application API key](https://platform.acedata.cloud/console/applications) with ACE Music access. In the flow builder, select an ACE Music action, create a connection and enter the raw key in **Ace Data Cloud application API key**. Keep keys out of prompts, shared workflows and commits.
+In a platform where installing custom pieces is enabled, you can also install `@acedatacloud/piece-acemusic` version `0.1.0` by package name from the npm registry. Import [the quickstart](examples/acemusic-quickstart.json) to connect a song generation to a lookup of the same task. Select your connection before running it. The creation step incurs charges when run, has automatic retries disabled, and the lookup may still return a pending task.
+
+Get an [application API key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) with ACE Music access. In the flow builder, select an ACE Music action, create a connection and enter the raw key in **Ace Data Cloud application API key**. Keep keys out of prompts, shared workflows and commits.
 
 | Action | Inputs or result |
 | --- | --- |
@@ -21,4 +23,4 @@ Get an [application API key](https://platform.acedata.cloud/console/applications
 | Retrieve task / multiple tasks | Use the original task IDs. |
 | List task history | Optional page and items per page. |
 
-Audio creation, reference import and writing lyrics are separately priced. Use the creation tool once, save its `task_id`, then retrieve the same task. If the connection breaks before a task ID arrives, inspect task history before resubmitting. The task state and `response` carry completion and partial failures. A partial result can contain one usable track. Play delivered tracks from `response.data[].audio_url`. Read [ACE Music API documentation](https://github.com/AceDataCloud/ACEMusicAPI) and [current pricing](https://platform.acedata.cloud/services/024e09b4-52cf-5e98-a91a-efedf43104c4).
+Audio creation, reference import and writing lyrics are separately priced. Use the creation tool once, save its `task_id`, then retrieve the same task. If the connection breaks before a task ID arrives, inspect task history before resubmitting. The task state and `response` carry completion and partial failures. A partial result can contain one usable track. Play delivered tracks from `response.data[].audio_url`. Read [ACE Music API documentation](https://github.com/AceDataCloud/ACEMusicAPI) and [current pricing](https://platform.acedata.cloud/services/024e09b4-52cf-5e98-a91a-efedf43104c4?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).

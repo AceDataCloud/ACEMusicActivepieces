@@ -24,3 +24,20 @@ test('native action queries only the original task and preserves partial results
     assert.deepEqual(calls, [['https://api.acedata.cloud/acemusic/tasks', { action: 'retrieve', id: 'saved' }]]);
   } finally { global.fetch = original; }
 });
+
+test('the bundled quickstart uses this release and keeps the original task ID', () => {
+  const pkg = require('../package.json');
+  const quickstart = require('../examples/acemusic-quickstart.json');
+  const create = quickstart.flows[0].trigger.nextAction;
+  const lookup = create.nextAction;
+  for (const step of [create, lookup]) {
+    assert.equal(step.settings.pieceName, pkg.name);
+    assert.equal(step.settings.pieceVersion, pkg.version);
+    assert.ok(acemusic.actions()[step.settings.actionName]);
+    assert.equal(step.settings.input.auth, '');
+  }
+  assert.equal(create.settings.actionName, 'generate');
+  assert.equal(create.settings.errorHandlingOptions.retryOnFailure.value, false);
+  assert.equal(lookup.settings.actionName, 'retrieve');
+  assert.equal(lookup.settings.input.task_id, `{{${create.name}['output']['task_id']}}`);
+});

@@ -1,0 +1,45 @@
+name: Publish Activepieces package
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+      - name: Check release identity
+        run: |
+          test "$(node -p "require('./package.json').name")" = '@acedatacloud/piece-acemusic'
+          test "$GITHUB_REF_NAME" = "v$(node -p "require('./package.json').version")"
+      - run: npm ci
+      - run: npm test
+      - name: Pack the verified files
+        run: npm pack --json > "$RUNNER_TEMP/package.json"
+      - name: Publish the immutable artifact with provenance
+        run: |
+          archive=$(jq -r '.[0].filename' "$RUNNER_TEMP/package.json")
+          integrity=$(jq -r '.[0].integrity' "$RUNNER_TEMP/package.json")
+          version=$(node -p "require('./package.json').version")
+          metadata="https://registry.npmjs.org/@acedatacloud/piece-acemusic/$version"
+          status=$(curl --silent --show-error --output "$RUNNER_TEMP/before.json" --write-out '%{http_code}' "$metadata")
+          case "$status" in
+            404) npm publish "$archive" --provenance --access public --registry=https://registry.npmjs.org ;;
+            200) test "$(jq -r .dist.integrity "$RUNNER_TEMP/before.json")" = "$integrity" ;;
+            *) exit 1 ;;
+          esac
+          for delay in 1 2 4 8 16 32; do
+            if curl --fail --silent --show-error "$metadata" > "$RUNNER_TEMP/registry.json" && test "$(jq -r .dist.integrity "$RUNNER_TEMP/registry.json")" = "$integrity"; then exit 0; fi
+            sleep "$delay"
+          done
+          exit 1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
