@@ -143,7 +143,7 @@ const history = createAction({
 });
 
 export const acemusic = createPiece({
-  displayName: 'ACE Music by Ace Data Cloud',
+  displayName: 'ACE Music',
   description: 'Create music and lyrics, import references, and retrieve original tasks.',
   logoUrl: 'https://cdn.acedata.cloud/acemusic-icon-52deddfc87b9.png',
   authors: ['Ace Data Cloud'],

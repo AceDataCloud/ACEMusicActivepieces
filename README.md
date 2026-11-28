@@ -8,7 +8,7 @@ npm test
 npm pack
 ```
 
-In a platform where installing custom pieces is enabled, you can also install `@acedatacloud/piece-acemusic` version `0.1.0` by package name from the npm registry. Import [the quickstart](examples/acemusic-quickstart.json) to connect a song generation to a lookup of the same task. Select your connection before running it. The creation step incurs charges when run, has automatic retries disabled, and the lookup may still return a pending task.
+In a platform where installing custom pieces is enabled, you can also install `@acedatacloud/piece-acemusic` version `0.1.1` by package name from the npm registry. Import [the quickstart](examples/acemusic-quickstart.json) to connect a song generation to a lookup of the same task. Select your connection before running it. The creation step incurs charges when run, has automatic retries disabled, and the lookup may still return a pending task.
 
 Get an [application API key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) with ACE Music access. In the flow builder, select an ACE Music action, create a connection and enter the raw key in **Ace Data Cloud application API key**. Keep keys out of prompts, shared workflows and commits.
 
